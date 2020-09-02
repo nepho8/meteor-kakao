@@ -30,7 +30,7 @@ var getAccessToken = function (query) {
                 params: {
                     grant_type: 'authorization_code',
                     client_id: config.clientId,
-                    redirect_uri: Meteor.absoluteUrl() + "_oauth/kakao?close",
+                    redirect_uri: Meteor.absoluteUrl() + "_oauth/kakao",
                     code: query.code
                 }
             });
