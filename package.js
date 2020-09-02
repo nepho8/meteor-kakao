@@ -1,6 +1,6 @@
 Package.describe({
   name: 'nepho:kakao',
-  version: '0.0.6',
+  version: '0.0.7',
   summary: 'Kakao OAuth flow',
   git: 'https://github.com/nepho8/meteor-kakao',
   documentation: 'README.md'
