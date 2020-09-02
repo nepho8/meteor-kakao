@@ -1,19 +1,21 @@
 Kakao = {};
 
 OAuth.registerService('kakao', 2, null, function (query) {
-    var requestAccess = getAccessToken(query);
-    var identity = JSON.parse(getIdentity(requestAccess));
-    identity.properties.name = identity.properties.nickname;
-    return {
-        serviceData: {
-            id: identity.id,
-            accessToken: requestAccess.access_token,
-            refreshToken: requestAccess.refresh_token,
-            expires_in: requestAccess.expires_in,
-            scope: requestAccess.scope
-        },
-        options: {profile: identity.properties}
-    };
+  var requestAccess = getAccessToken(query);
+  var identity = JSON.parse(getIdentity(requestAccess));
+  identity.properties.name = identity.properties.nickname;
+  return {
+    serviceData: {
+      id: identity.id,
+      accessToken: requestAccess.access_token,
+      refreshToken: requestAccess.refresh_token,
+      expires_in: requestAccess.expires_in,
+      scope: requestAccess.scope,
+      email: identity.kakao_account.email,
+      account: identity.kakao_account,
+    },
+    options: { profile: identity.properties },
+  };
 });
 
 var getAccessToken = function (query) {
@@ -53,7 +55,6 @@ var getIdentity = function (requestAccess) {
                     Authorization: authorization
                 }
         });
-      console.log("response", response);
         return response.content;
     } catch (err) {
         throw _.extend(new Error("Failed to fetch identity from Kakao. " + response.content),
