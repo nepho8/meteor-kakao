@@ -1,8 +1,8 @@
 Package.describe({
-  name: 'spectrum:kakao',
-  version: '0.0.4',
+  name: 'nepho:kakao',
+  version: '0.0.5',
   summary: 'Kakao OAuth flow',
-  git: 'https://github.com/acidsound/meteor-kakao',
+  git: 'https://github.com/nepho8/meteor-kakao',
   documentation: 'README.md'
 });
 

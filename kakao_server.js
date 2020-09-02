@@ -28,7 +28,7 @@ var getAccessToken = function (query) {
                 params: {
                     grant_type: 'authorization_code',
                     client_id: config.clientId,
-                    redirect_uri: Meteor.absoluteUrl() + "_oauth/kakao",
+                    redirect_uri: Meteor.absoluteUrl() + "_oauth/kakao?close",
                     code: query.code
                 }
             });
@@ -48,11 +48,12 @@ var getIdentity = function (requestAccess) {
     try {
         var authorization = requestAccess.token_type + " " + requestAccess.access_token;
         var response = HTTP.post(
-            "https://kapi.kakao.com/v1/user/me", {
+            "https://kapi.kakao.com/v2/user/me", {
                 headers: {
                     Authorization: authorization
                 }
-            });
+        });
+      console.log("response", response);
         return response.content;
     } catch (err) {
         throw _.extend(new Error("Failed to fetch identity from Kakao. " + response.content),
